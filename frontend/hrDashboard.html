@@ -1,49 +1,159 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>HR Dashboard</title>
-  <link rel="stylesheet" href="hrDashboard.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet"
+        href="hrDashboard.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
+
   <div class="dashboard-shell">
+
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
+
       <div class="brand-panel">
-        <div class="logo-icon"><i class="fa-solid fa-industry"></i></div>
+
+        <div class="logo-icon">
+          <i class="fa-solid fa-industry"></i>
+        </div>
+
         <div>
           <h2>Steel Plant</h2>
           <p>HR Portal</p>
         </div>
+
       </div>
+
       <div class="user-card">
-        <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+
+        <div class="avatar">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+
         <div>
           <h3 id="username">HR Manager</h3>
           <p>Human Resources</p>
         </div>
+
       </div>
+
       <nav class="nav-list">
-        <button class="nav-item active" data-page="profile.html"><i class="fa-solid fa-user"></i>Profile</button>
-        <button class="nav-item" data-page="attendance.html"><i class="fa-solid fa-calendar-check"></i>Attendance</button>
-        <button class="nav-item" data-page="leaveApproval.html"><i class="fa-solid fa-thumbs-up"></i>Leave Approval</button>
-        <button class="nav-item" data-page="employeeDetails.html"><i class="fa-solid fa-table-list"></i>Employee Details</button>
-        <button class="nav-item logout-btn"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
+
+        <button class="nav-item active"
+                data-page="profile.html">
+
+          <i class="fa-solid fa-user"></i>
+          Profile
+
+        </button>
+
+        <button class="nav-item"
+                data-page="leaveApproval.html">
+
+          <i class="fa-solid fa-thumbs-up"></i>
+          Leave Approval
+
+        </button>
+
+        <button class="nav-item"
+                data-page="employeeDetails.html">
+
+          <i class="fa-solid fa-table-list"></i>
+          Employee Details
+
+        </button>
+
+        <button class="nav-item sidebar-logout">
+
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+
+        </button>
+
       </nav>
+
     </aside>
+
+    <!-- MAIN -->
+
     <main class="workspace">
+
       <header class="workspace-header">
+
         <div>
+
           <p>HR Dashboard</p>
-          <h1 id="welcomeName">Steel Plant HR</h1>
+
+          <h1 id="welcomeName">
+            Steel Plant HR
+          </h1>
+
         </div>
+
       </header>
+
       <section class="workspace-content">
-        <iframe id="frame" src="profile.html"></iframe>
+
+        <iframe id="frame"
+                src="profile.html"></iframe>
+
       </section>
+
     </main>
+
   </div>
+
+  <!-- LOGOUT POPUP -->
+
+  <div id="logoutPopup"
+       class="popup">
+
+    <div class="popup-box">
+
+      <i class="fa-solid fa-right-from-bracket"></i>
+
+      <h2>Logout</h2>
+
+      <p>
+        Are you sure you want to logout?
+      </p>
+
+      <div class="popup-buttons">
+
+        <button class="cancel-btn"
+                onclick="closePopup()">
+
+          Cancel
+
+        </button>
+
+        <button class="popup-logout-btn"
+                onclick="confirmLogout()">
+
+          Logout
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
   <script src="hrDashboard.js"></script>
+
 </body>
+
 </html>

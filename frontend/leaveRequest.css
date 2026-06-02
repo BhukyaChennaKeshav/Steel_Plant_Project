@@ -5,25 +5,35 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* PAGE TITLE */
 h1 {
   margin: 28px 30px 20px;
 }
 
+/* SAME WIDTH CONTAINER */
+.container {
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+/* FORM */
 form {
-  max-width: 640px;
+  max-width: 650px;
   margin: 0 auto;
   display: grid;
   gap: 18px;
   padding: 24px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 input,
 textarea,
 button {
   width: 100%;
+  box-sizing: border-box;
   font-family: inherit;
 }
 
@@ -36,9 +46,8 @@ textarea {
   color: white;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #d1d5db;
+textarea {
+  min-height: 140px;
 }
 
 button {
@@ -46,16 +55,62 @@ button {
   border: none;
   border-radius: 18px;
   background: linear-gradient(135deg, #ffb800, #ff5e00);
-  color: white;
   font-weight: 700;
   cursor: pointer;
 }
 
-textarea {
-  min-height: 140px;
-  resize: vertical;
+/* SECTION TITLE */
+.section-title {
+  margin: 40px 0 15px;
+  font-size: 22px;
 }
 
-@media (max-width: 760px) {
-  form { margin: 0 18px; }
+/* FULL WIDTH TABLE WRAPPER */
+.table-wrapper {
+  width: 100%;
+}
+
+/* TABLE */
+.statusTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* HEADER BROWN */
+.statusTable thead {
+  background: rgba(255, 152, 0, 0.18);
+}
+
+.statusTable th {
+  padding: 14px;
+  text-align: center;
+  color: white;
+}
+
+/* ROWS */
+.statusTable td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* STATUS COLORS */
+.approved {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.rejected {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
 }

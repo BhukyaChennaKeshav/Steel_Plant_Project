@@ -1,53 +1,55 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-
-<link rel="stylesheet"
-href="leaveRequest.css">
-
+<link rel="stylesheet" href="leaveRequest.css">
 </head>
 
 <body>
 
-<h1>
+<h1>Leave Request</h1>
 
-Leave Request
+<div class="container">
 
-</h1>
+  <form id="leaveForm">
 
-<form id="leaveForm">
+    <input id="leaveType" placeholder="Leave Type">
 
-<input
-id="leaveType"
-placeholder="Leave Type">
+    <input type="date" id="fromDate">
 
-<input
-type="date"
-id="fromDate">
+    <input type="date" id="toDate">
 
-<input
-type="date"
-id="toDate">
+    <textarea id="reason" placeholder="Reason"></textarea>
 
-<textarea
-id="reason"
-placeholder="Reason">
+    <button type="submit">Submit</button>
 
-</textarea>
+  </form>
 
-<button>
+  <h1 >My Leave Status</h1>
 
-Submit
+  <div class="table-wrapper">
 
-</button>
+    <table class="statusTable">
 
-</form>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Reason</th>
+          <th>Status</th>
+        </tr>
+      </thead>
 
-<script src="leaveRequest.js">
+      <tbody id="leaveStatusTable"></tbody>
 
-</script>
+    </table>
+
+  </div>
+
+</div>
+
+<script src="leaveRequest.js"></script>
 
 </body>
 

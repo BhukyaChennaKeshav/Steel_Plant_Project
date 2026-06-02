@@ -1,49 +1,171 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Employee Dashboard</title>
-  <link rel="stylesheet" href="employeeDashboard.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet"
+        href="employeeDashboard.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
+
   <div class="dashboard-shell">
-    <aside class="sidebar">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar"
+           id="sidebar">
+
       <div class="brand-panel">
-        <div class="logo-icon"><i class="fa-solid fa-industry"></i></div>
+
+        <div class="logo-icon">
+          <i class="fa-solid fa-industry"></i>
+        </div>
+
         <div>
           <h2>Steel Plant</h2>
           <p>Employee Portal</p>
         </div>
+
       </div>
+
       <div class="user-card">
-        <div class="avatar"><i class="fa-solid fa-user"></i></div>
+
+        <div class="avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+
         <div>
           <h3 id="username">Employee</h3>
           <p>Employee</p>
         </div>
+
       </div>
+
       <nav class="nav-list">
-        <button class="nav-item active" data-page="dashboard.html"><i class="fa-solid fa-chart-line"></i>Dashboard</button>
-        <button class="nav-item" data-page="profile.html"><i class="fa-solid fa-user"></i>Profile</button>
-        <button class="nav-item" data-page="attendance.html"><i class="fa-solid fa-calendar-check"></i>Attendance</button>
-        <button class="nav-item" data-page="leaveRequest.html"><i class="fa-solid fa-file-lines"></i>Leave Request</button>
-        <button class="nav-item" data-page="employeeLeaveStatus.html">Leave Status</button>
-        <button class="nav-item logout-btn"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
+
+        <button class="nav-item active"
+                data-page="dashboard.html">
+
+          <i class="fa-solid fa-chart-line"></i>
+          Dashboard
+
+        </button>
+
+        <button class="nav-item"
+                data-page="profile.html">
+
+          <i class="fa-solid fa-user"></i>
+          Profile
+
+        </button>
+
+        <button class="nav-item"
+                data-page="attendance.html">
+
+          <i class="fa-solid fa-calendar-check"></i>
+          Attendance
+
+        </button>
+
+        <button class="nav-item"
+                data-page="leaveRequest.html">
+
+          <i class="fa-solid fa-file-lines"></i>
+          Leave Request
+
+        </button>
+              
+
+
+        <button class="nav-item sidebar-logout">
+
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+
+        </button>
+        
+
       </nav>
+
     </aside>
+
+    <!-- MAIN -->
+
     <main class="workspace">
-      <header class="workspace-header">
-        <div>
-          
-        </div>
-      </header>
+
+      <!-- MENU BUTTON -->
+
+      <button class="menu-btn"
+              id="menuBtn">
+
+        <i class="fa-solid fa-bars"></i>
+
+      </button>
+
+      <!-- CONTENT -->
+
       <section class="workspace-content">
-        <iframe id="frame" src="dashboard.html"></iframe>
+
+        <iframe id="frame"
+                src="dashboard.html"></iframe>
+
       </section>
+
     </main>
+
   </div>
+
+  <!-- LOGOUT POPUP -->
+
+  <div id="logoutPopup"
+       class="popup">
+
+    <div class="popup-box">
+
+      <i class="fa-solid fa-right-from-bracket"></i>
+
+      <h2>
+        Logout
+      </h2>
+
+      <p>
+        Are you sure you want to logout?
+      </p>
+
+      <div class="popup-buttons">
+
+        <button class="cancel-btn"
+                onclick="closePopup()">
+
+          Cancel
+
+        </button>
+
+        <button class="popup-logout-btn"
+                onclick="confirmLogout()">
+
+          Logout
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
   <script src="employeeDashboard.js"></script>
+
 </body>
+
 </html>
