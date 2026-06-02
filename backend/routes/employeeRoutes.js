@@ -5,7 +5,7 @@ const employeeController = require("../controllers/employeeController");
 router.get("/employee/:id", employeeController.getEmployee);
 router.put("/employee/:id", employeeController.updateEmployee);
 
-router.get("/attendance/:id", employeeController.getAttendance);
+router.post("/self-attendance",employeeController.selfAttendance);
 
 router.post("/leave", employeeController.submitLeave);
 

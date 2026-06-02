@@ -1,25 +1,52 @@
 ﻿const db = require("../config/db");
-
+const bcrypt = require("bcrypt");
 exports.login = (req, res) => {
+
   const { employee_id, password } = req.body;
 
-  const sql = `SELECT * FROM users WHERE employee_id = ? AND password = ?`;
+  db.query(
+    "SELECT * FROM users WHERE employee_id = ?",
+    [employee_id],
+    async (err, result) => {
 
-  db.query(sql, [employee_id, password], (err, result) => {
-    if (err) {
-      return res.status(500).json({ success: false, message: "Server error" });
-    }
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Server Error"
+        });
+      }
 
-    if (result.length > 0) {
-      return res.json({
+      if (result.length === 0) {
+        return res.json({
+          success: false,
+          message: "Invalid Credentials"
+        });
+      }
+
+      const user = result[0];
+
+      const match = await bcrypt.compare(
+        password,
+        user.password
+      );
+
+      if (!match) {
+
+        return res.json({
+          success: false,
+          message: "Invalid Credentials"
+        });
+
+      }
+
+      res.json({
         success: true,
-        employee_id: result[0].employee_id,
-        role: result[0].role
+        employee_id: user.employee_id,
+        role: user.role
       });
-    }
 
-    return res.json({ success: false, message: "Invalid credentials" });
-  });
+    }
+  );
 };
 
 exports.status = (req, res) => {

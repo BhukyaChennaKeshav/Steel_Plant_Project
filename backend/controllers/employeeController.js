@@ -107,7 +107,14 @@ exports.updateEmployee = (req, res) => {
 exports.getAttendance = (req, res) => {
 
   const id = req.params.id;
+ if(!id){
 
+  return res.status(400).json({
+    success:false,
+    message:"Invalid Employee"
+  });
+
+}
   db.query(
 
     `SELECT * FROM employee_attendance
@@ -354,6 +361,73 @@ exports.getEmployeeLeaves = (req, res) => {
       }
 
       res.json(result);
+
+    }
+
+  );
+
+};
+exports.selfAttendance = (req, res) => {
+
+  const {
+    employee_id,
+    latitude,
+    longitude
+  } = req.body;
+
+  const plantLat = 17.63;
+  const plantLon = 83.17;
+
+  const range = 0.02;
+
+  if (
+    Math.abs(latitude - plantLat) > range ||
+    Math.abs(longitude - plantLon) > range
+  ) {
+
+    return res.json({
+      success: false,
+      message: "You are outside plant area"
+    });
+
+  }
+
+  db.query(
+
+    `INSERT INTO employee_attendance
+    (
+      employee_id,
+      attendance_date,
+      day,
+      status
+    )
+    VALUES
+    (
+      ?,
+      CURDATE(),
+      DAYNAME(CURDATE()),
+      'Present'
+    )`,
+
+    [employee_id],
+
+    (err) => {
+
+      if (err) {
+
+        console.log(err);
+
+        return res.json({
+          success: false,
+          message: "Attendance already marked"
+        });
+
+      }
+
+      res.json({
+        success: true,
+        message: "Attendance Marked Successfully"
+      });
 
     }
 

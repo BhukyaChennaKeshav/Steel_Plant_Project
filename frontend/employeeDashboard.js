@@ -71,6 +71,7 @@ navButtons.forEach((button)=>{
 
 });
 
+<<<<<<< HEAD
 /* MENU BUTTON */
 
 menuBtn.addEventListener("click",()=>{
@@ -114,3 +115,12 @@ function confirmLogout(){
   window.location.href =
   "role.html";
 }
+=======
+document.querySelector(".logout-btn").addEventListener("click", () => {
+  const confirmLogout = confirm("Are you sure you want to logout?");
+  if (confirmLogout) {
+    localStorage.clear();
+    window.location.href = "role.html";
+  }
+});
+>>>>>>> 2339119 (Updated project)

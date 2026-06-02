@@ -102,3 +102,59 @@ async function loadAttendance() {
 }
 
 loadAttendance();
+document.getElementById("markAttendance")
+.addEventListener("click", () => {
+
+  if (!navigator.geolocation) {
+    alert("GPS not supported");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+
+    async (position) => {
+
+      const latitude =
+      position.coords.latitude;
+
+      const longitude =
+      position.coords.longitude;
+
+      try {
+
+        const response =
+        await fetch(
+          "http://localhost:5000/self-attendance",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              employee_id: employeeId,
+              latitude,
+              longitude
+            })
+          }
+        );
+
+        const data =
+        await response.json();
+
+        alert(data.message);
+
+        loadAttendance();
+
+      } catch (error) {
+
+        alert("Attendance failed");
+
+      }
+
+    }
+
+  );
+
+});
