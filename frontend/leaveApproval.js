@@ -8,7 +8,7 @@ async function loadLeaves() {
     if (!data || data.length === 0) {
       leaveTable.innerHTML = `
         <tr>
-          <td colspan="7">No leave requests</td>
+          <td colspan="8">No leave requests</td>
         </tr>
       `;
       return;
@@ -35,7 +35,7 @@ async function loadLeaves() {
     console.error(error);
     leaveTable.innerHTML = `
       <tr>
-        <td colspan="7">Unable to load leaves</td>
+        <td colspan="8">Unable to load leaves</td>
       </tr>
     `;
   }

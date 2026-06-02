@@ -153,6 +153,10 @@ document.getElementById("markAttendance")
 
       }
 
+    },
+
+    () => {
+      alert("Unable to get GPS location. Please allow location access and try again.");
     }
 
   );

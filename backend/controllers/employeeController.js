@@ -375,14 +375,30 @@ exports.selfAttendance = (req, res) => {
     longitude
   } = req.body;
 
+  const currentLatitude = Number(latitude);
+  const currentLongitude = Number(longitude);
+
+  if (
+    !employee_id ||
+    Number.isNaN(currentLatitude) ||
+    Number.isNaN(currentLongitude)
+  ) {
+
+    return res.status(400).json({
+      success: false,
+      message: "Invalid attendance location"
+    });
+
+  }
+
   const plantLat = 17.63;
   const plantLon = 83.17;
 
   const range = 0.02;
 
   if (
-    Math.abs(latitude - plantLat) > range ||
-    Math.abs(longitude - plantLon) > range
+    Math.abs(currentLatitude - plantLat) > range ||
+    Math.abs(currentLongitude - plantLon) > range
   ) {
 
     return res.json({

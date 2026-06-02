@@ -28,6 +28,7 @@ leaveForm.addEventListener("submit", async (event) => {
     const data = await response.json();
     alert(data.message || "Leave submitted successfully");
     leaveForm.reset();
+    loadLeaveStatus();
   } catch (error) {
     alert("Unable to submit leave request");
   }

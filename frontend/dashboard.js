@@ -15,10 +15,10 @@ async function loadSummary() {
     const attendance = await attendanceRes.json();
     const leaves = await leavesRes.json();
     const pendingLeaves = Array.isArray(leaves)
-      ? leaves.filter((item) => item.employee_id === employeeId && item.status === "Pending").length
+      ? leaves.filter((item) => String(item.employee_id) === employeeId && item.status === "Pending").length
       : 0;
 
-    document.getElementById("attendanceCount").innerText = attendance.length ? `${attendance.length} records` : "No records yet";
+    document.getElementById("attendanceCount").innerText = Array.isArray(attendance) && attendance.length ? `${attendance.length} records` : "No records yet";
     document.getElementById("pendingLeaves").innerText = pendingLeaves ? `${pendingLeaves} pending` : "No pending requests";
     document.getElementById("profileStatus").innerText = profile.employee_status || "Active";
   } catch (error) {

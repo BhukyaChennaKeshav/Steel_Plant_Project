@@ -1,126 +1,59 @@
-﻿const employeeId =
-localStorage.getItem("employeeId");
+document.addEventListener("DOMContentLoaded", () => {
+  const employeeId = localStorage.getItem("employeeId");
+  const userRole = localStorage.getItem("userRole");
 
-const userRole =
-localStorage.getItem("userRole");
+  if (!employeeId || userRole !== "employee") {
+    window.location.href = "role.html";
+    return;
+  }
 
-const frame =
-document.getElementById("frame");
+  const frame = document.getElementById("frame");
+  const navButtons = Array.from(document.querySelectorAll(".nav-item[data-page]"));
+  const username = document.getElementById("username");
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.getElementById("menuBtn");
+  const logoutButton = document.querySelector(".sidebar-logout");
+  const logoutPopup = document.getElementById("logoutPopup");
 
-const navButtons =
-Array.from(
-  document.querySelectorAll(".nav-item[data-page]")
-);
+  username.textContent = employeeId;
 
-const username =
-document.getElementById("username");
+  function setActive(button) {
+    navButtons.forEach((item) => {
+      item.classList.remove("active");
+    });
 
-const sidebar =
-document.getElementById("sidebar");
+    button.classList.add("active");
+  }
 
-const menuBtn =
-document.getElementById("menuBtn");
+  navButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      frame.src = button.dataset.page;
+      setActive(button);
 
-/* LOGIN CHECK */
-
-if (!employeeId || userRole !== "employee") {
-
-  window.location.href =
-  "role.html";
-}
-
-/* USERNAME */
-
-username.textContent =
-employeeId;
-
-/* ACTIVE BUTTON */
-
-function setActive(button){
-
-  navButtons.forEach((item)=>{
-
-    item.classList.remove("active");
-
+      if (window.innerWidth <= 980) {
+        sidebar.classList.remove("active");
+      }
+    });
   });
 
-  button.classList.add("active");
-}
+  menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
+  });
 
-/* NAVIGATION */
+  logoutButton.addEventListener("click", () => {
+    logoutPopup.style.display = "flex";
 
-navButtons.forEach((button)=>{
-
-  button.addEventListener("click",()=>{
-
-    const page =
-    button.dataset.page;
-
-    frame.src = page;
-
-    setActive(button);
-
-    /* HIDE SIDEBAR AFTER CLICK */
-
-    if(window.innerWidth <= 980){
-
+    if (window.innerWidth <= 980) {
       sidebar.classList.remove("active");
     }
-
   });
 
-});
+  window.closePopup = function closePopup() {
+    logoutPopup.style.display = "none";
+  };
 
-<<<<<<< HEAD
-/* MENU BUTTON */
-
-menuBtn.addEventListener("click",()=>{
-
-  sidebar.classList.toggle("active");
-
-});
-
-/* LOGOUT POPUP */
-
-document.querySelector(".sidebar-logout")
-.addEventListener("click",logout);
-
-function logout(){
-
-  document.getElementById("logoutPopup")
-  .style.display = "flex";
-
-  /* HIDE SIDEBAR */
-
-  if(window.innerWidth <= 980){
-
-    sidebar.classList.remove("active");
-  }
-}
-
-/* CLOSE POPUP */
-
-function closePopup(){
-
-  document.getElementById("logoutPopup")
-  .style.display = "none";
-}
-
-/* CONFIRM LOGOUT */
-
-function confirmLogout(){
-
-  localStorage.clear();
-
-  window.location.href =
-  "role.html";
-}
-=======
-document.querySelector(".logout-btn").addEventListener("click", () => {
-  const confirmLogout = confirm("Are you sure you want to logout?");
-  if (confirmLogout) {
+  window.confirmLogout = function confirmLogout() {
     localStorage.clear();
     window.location.href = "role.html";
-  }
+  };
 });
->>>>>>> 2339119 (Updated project)
