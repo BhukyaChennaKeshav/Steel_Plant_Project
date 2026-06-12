@@ -35,7 +35,7 @@ body{
     width:500px;
     height:500px;
 
-    background:#ffb800;
+    background:green;
 
     border-radius:50%;
 
@@ -113,7 +113,7 @@ body{
     background:
     linear-gradient(
         135deg,
-        #ffb800,
+        #0f226f,
         #ff6a00
     );
 }

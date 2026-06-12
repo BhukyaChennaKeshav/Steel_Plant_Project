@@ -25,10 +25,10 @@ togglePassword.addEventListener("click", () => {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const employee_id = document.getElementById("userid").value.trim();
+ const loginInput =document.getElementById("userid").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  if (!employee_id || !password) {
+  if (!loginInput || !password) {
     return showPopup("Please enter your credentials", false);
   }
 
@@ -36,7 +36,7 @@ form.addEventListener("submit", async (event) => {
     const response = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ employee_id, password })
+      body: JSON.stringify({ loginInput, password })
     });
 
     const data = await response.json();

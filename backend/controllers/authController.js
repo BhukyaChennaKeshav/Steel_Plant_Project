@@ -2,11 +2,11 @@
 const bcrypt = require("bcrypt");
 exports.login = (req, res) => {
 
-  const { employee_id, password } = req.body;
+  const { loginInput, password} = req.body;
 
   db.query(
-    "SELECT * FROM users WHERE employee_id = ?",
-    [employee_id],
+    "SELECT * FROM users WHERE employee_id = ? OR email = ?",
+    [loginInput, loginInput],
     async (err, result) => {
 
       if (err) {
@@ -29,7 +29,7 @@ exports.login = (req, res) => {
         password,
         user.password
       );
-
+      console.log("Password Match:", match);
       if (!match) {
 
         return res.json({

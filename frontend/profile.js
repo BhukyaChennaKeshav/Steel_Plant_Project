@@ -11,7 +11,9 @@ async function loadProfile() {
 
   try {
 
-    const response = await fetch(`http://localhost:5000/employee/${employeeId}`);
+    const response = await fetch(
+      `http://localhost:5000/employee/${employeeId}`
+    );
 
     if (!response.ok) {
       throw new Error("Server error or employee not found");
@@ -19,16 +21,12 @@ async function loadProfile() {
 
     const data = await response.json();
 
-    console.log("API DATA:", data);
-
-    // TOP
     document.getElementById("top_name").innerText =
       data.employee_name || "Employee";
 
     document.getElementById("top_id").innerText =
       data.employee_id || "";
 
-    // FORM
     document.getElementById("employee_id").value =
       data.employee_id || "";
 
@@ -53,10 +51,6 @@ async function loadProfile() {
     document.getElementById("emergency_contact").value =
       data.emergency_contact || "";
 
-    document.getElementById("address").value =
-      data.address || "";
-
-    // STATUS
     document.querySelector(".status-badge").innerText =
       data.employee_status || "Active";
 
@@ -64,10 +58,112 @@ async function loadProfile() {
 
     console.error(error);
 
-    alert("Unable to load employee details. Check backend/API.");
+    alert("Unable to load employee details");
 
   }
 
 }
 
 loadProfile();
+
+/* OPEN POPUP */
+
+const openPasswordBtn =
+document.getElementById("openPasswordBtn");
+
+const passwordPopup =
+document.getElementById("passwordPopup");
+
+passwordPopup.style.display = "none";
+
+openPasswordBtn.addEventListener("click", () => {
+
+  passwordPopup.style.display = "flex";
+
+});
+
+/* CLOSE POPUP */
+
+function closePasswordPopup() {
+
+  passwordPopup.style.display = "none";
+
+}
+
+window.closePasswordPopup =
+closePasswordPopup;
+
+/* CHANGE PASSWORD */
+
+document
+.getElementById("changePasswordBtn")
+.addEventListener("click", async () => {
+
+  const currentPassword =
+    document.getElementById("currentPassword").value;
+
+  const newPassword =
+    document.getElementById("newPassword").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+  if (
+    !currentPassword ||
+    !newPassword ||
+    !confirmPassword
+  ) {
+
+    alert("Please fill all fields");
+    return;
+
+  }
+
+  if (newPassword !== confirmPassword) {
+
+    alert("Passwords do not match");
+    return;
+
+  }
+
+  try {
+
+    const response = await fetch(
+      `http://localhost:5000/change-password/${employeeId}`,
+      {
+        method: "PUT",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          currentPassword,
+          newPassword
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    if (data.success) {
+
+      document.getElementById("currentPassword").value = "";
+      document.getElementById("newPassword").value = "";
+      document.getElementById("confirmPassword").value = "";
+
+      passwordPopup.style.display = "none";
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Unable to change password");
+
+  }
+
+});

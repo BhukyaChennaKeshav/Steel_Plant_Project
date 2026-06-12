@@ -1,17 +1,18 @@
 const bcrypt = require("bcrypt");
+const readline = require("readline");
 
-async function generateHashes() {
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-  console.log("100100:", await bcrypt.hash("12345", 10));
+rl.question("Enter Password: ", async (password) => {
 
-  console.log("100102:", await bcrypt.hash("12321", 10));
+  const hash = await bcrypt.hash(password, 10);
 
-  console.log("100103:", await bcrypt.hash("34543", 10));
+  console.log("\nHash:");
+  console.log(hash);
 
-  console.log("100104:", await bcrypt.hash("12345", 10));
+  rl.close();
 
-  console.log("200100:", await bcrypt.hash("54321", 10));
-
-}
-
-generateHashes();
+});

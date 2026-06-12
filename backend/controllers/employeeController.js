@@ -1,4 +1,5 @@
-﻿const db = require("../config/db");
+﻿const bcrypt = require("bcrypt");
+const db = require("../config/db");
 
 // PROFILE
 exports.getEmployee = (req, res) => {
@@ -444,6 +445,97 @@ exports.selfAttendance = (req, res) => {
         success: true,
         message: "Attendance Marked Successfully"
       });
+
+    }
+
+  );
+
+};
+
+exports.changePassword = async (req,res) => {
+
+  const id = req.params.id;
+
+  const {
+    currentPassword,
+    newPassword
+  } = req.body;
+
+  db.query(
+
+    "SELECT password FROM users WHERE employee_id=?",
+
+    [id],
+
+    async (err,result)=>{
+
+      if(err){
+
+        return res.status(500).json({
+          success:false
+        });
+
+      }
+
+      if(result.length===0){
+
+        return res.status(404).json({
+          success:false,
+          message:"User not found"
+        });
+
+      }
+
+      const user = result[0];
+
+      const match =
+      await bcrypt.compare(
+        currentPassword,
+        user.password
+      );
+
+      if(!match){
+
+        return res.json({
+          success:false,
+          message:"Current password incorrect"
+        });
+
+      }
+
+      const hashedPassword =
+      await bcrypt.hash(
+        newPassword,
+        10
+      );
+
+      db.query(
+
+        "UPDATE users SET password=? WHERE employee_id=?",
+
+        [
+          hashedPassword,
+          id
+        ],
+
+        (err)=>{
+
+          if(err){
+
+            return res.status(500).json({
+              success:false
+            });
+
+          }
+
+          res.json({
+            success:true,
+            message:"Password changed successfully"
+          });
+
+        }
+
+      );
 
     }
 

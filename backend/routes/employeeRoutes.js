@@ -20,4 +20,6 @@ router.put("/approve/:id", employeeController.approveLeave);
 
 router.put("/reject/:id", employeeController.rejectLeave);
 
+router.put("/change-password/:id", employeeController.changePassword);
+
 module.exports = router;

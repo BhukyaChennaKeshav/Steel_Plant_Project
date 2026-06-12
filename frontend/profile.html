@@ -86,10 +86,64 @@
         <input type="text" id="emergency_contact" readonly>
       </div>
 
-      <div class="address-field">
-        <label>Address</label>
-        <textarea id="address" readonly></textarea>
-      </div>
+    <div class="address-field">
+
+  <button type="button" id="openPasswordBtn">
+    <i class="fa-solid fa-lock"></i>
+    Change Password
+  </button>
+
+</div>
+
+<!-- PASSWORD POPUP -->
+
+<div id="passwordPopup" class="popup">
+
+  <div class="popup-box">
+
+    <h2>Change Password</h2>
+
+    <input
+      type="password"
+      id="currentPassword"
+      placeholder="Current Password"
+    >
+
+    <input
+      type="password"
+      id="newPassword"
+      placeholder="New Password"
+    >
+
+    <input
+      type="password"
+      id="confirmPassword"
+      placeholder="Confirm New Password"
+    >
+
+    <div class="popup-buttons">
+
+      <button
+        type="button"
+        onclick="closePasswordPopup()">
+
+        Cancel
+
+      </button>
+
+      <button
+        type="button"
+        id="changePasswordBtn">
+
+        Update Password
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
     </div>
 
